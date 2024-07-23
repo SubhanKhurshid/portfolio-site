@@ -39,7 +39,7 @@ const ContactPage = () => {
           />
           <Button
             type="submit"
-            className="max-w-lg bg-white hover:bg-white hover:opacity-80 text-black"
+            className="max-w-lg bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80"
           >
             Send Message
           </Button>

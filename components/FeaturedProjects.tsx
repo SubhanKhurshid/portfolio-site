@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "./ui/card";
 import image from "@/public/pexels-markusspiske-177598.jpg";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { ArrowUpRight, MoveRight } from "lucide-react";
+import { ArrowUpRight, Github, MoveRight } from "lucide-react";
 
 const FeaturedProjects = () => {
   return (
@@ -45,10 +45,19 @@ const FeaturedProjects = () => {
                     A web application that helps users manage their tasks and
                     projects.
                   </p>
-                  <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
-                    Show Deatils
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Button>
+                  <div className="flex items-start justify-start gap-3">
+                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
+                      Show Deatils
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Button>
+                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 font-medium">
+                      Live Site
+                    </Button>
+                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 font-medium gap-2">
+                      Github
+                      <Github className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
