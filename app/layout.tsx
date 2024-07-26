@@ -1,6 +1,7 @@
 import { Manrope } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const fontHeading = Manrope({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function Layout({
           "bg-black"
         )}
       >
+        <Toaster richColors />
         {children}
       </body>
     </html>
