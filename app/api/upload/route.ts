@@ -17,10 +17,5 @@ export const POST = async (req: NextRequest) => {
   }
 };
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '4mb',
-    },
-  },
-};
+// Remove the Edge runtime configuration to use the default Node.js runtime
+// export const runtime = 'edge';
