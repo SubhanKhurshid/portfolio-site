@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -19,9 +19,12 @@ import {
 import * as z from "zod";
 import { projectSchema } from "@/lib/validator";
 import { createProject } from "@/lib/actions/route";
+import { Checkbox } from "@/components/ui/checkbox";
+import FileUploader from "@/components/FileUploader";
 
 const AddProductPage = () => {
   const router = useRouter();
+  const [image, setImage] = useState<string | null>(null);
 
   const initialValues = {
     name: "",
@@ -31,6 +34,7 @@ const AddProductPage = () => {
     github: "",
     achieved: "",
     implementation: "",
+    featured: true,
   };
 
   const form = useForm<z.infer<typeof projectSchema>>({
@@ -39,12 +43,35 @@ const AddProductPage = () => {
   });
 
   async function onSubmit(values: z.infer<typeof projectSchema>) {
-    console.log("Form values:", values);
-    const response = await createProject(values);
+    if (!image) {
+      toast.error("Please upload an image");
+      return;
+    }
 
-    toast.success("Project added successfully");
-    console.log(response);
-    form.reset();
+    const uploadResponse = await fetch("/api/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ file: image }),
+    });
+
+    const uploadData = await uploadResponse.json();
+
+    if (uploadResponse.ok) {
+      const projectData = {
+        ...values,
+        imageUrl: uploadData.url,
+      };
+
+      const data = await createProject(projectData);
+      console.log(data);
+      toast.success("Project added successfully");
+      form.reset();
+      setImage(null);
+    } else {
+      toast.error("Image upload failed");
+    }
   }
 
   return (
@@ -176,6 +203,26 @@ const AddProductPage = () => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="featured"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    Use different settings for my mobile devices
+                  </FormLabel>
+                </div>
+              </FormItem>
+            )}
+          />
+          <FileUploader onFileSelect={setImage} />
 
           <Button
             className="bg-[#E7E7E4] rounded-2xl text-black hover:bg-[#E7E7E4] hover:opacity-80 mb-14"

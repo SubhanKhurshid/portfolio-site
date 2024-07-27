@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import image from "@/public/pexels-markusspiske-177598.jpg";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowUpRight, Github, MoveRight } from "lucide-react";
+import { getProjects } from "@/lib/actions/route";
+import Link from "next/link";
 
 const FeaturedProjects = () => {
+  const [projects, setProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getProjects();
+
+      if (result.success) {
+        setProjects(result.data || []);
+      } else {
+        console.error(result.error);
+      }
+    };
+    getData();
+  }, []);
   return (
     <section
       id="projects"
@@ -27,115 +43,53 @@ const FeaturedProjects = () => {
           </div>
         </div>
         <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-          <div className="grid gap-4">
-            <Card className="bg-[#18181B] text-[#E7E7E4] border-2 border-[#1b1b1c]">
+          {projects.map((project, index) => (
+            <Card
+              key={index}
+              className="bg-[#18181B] text-[#E7E7E4] border-2 border-[#1b1b1c]"
+            >
               <CardHeader>
                 <Image
-                  src={image}
+                  src={project.imageUrl}
                   width="550"
                   height="310"
-                  alt="Project 1"
+                  alt={project.name}
                   className="mx-auto aspect-video overflow-hidden rounded-t-xl object-cover object-center sm:w-full"
                 />
               </CardHeader>
               <CardContent>
                 <div className="flex flex-col items-start justify-start space-y-3">
-                  <h3 className="text-xl font-bold">Project 1</h3>
-                  <p>
-                    A web application that helps users manage their tasks and
-                    projects.
-                  </p>
+                  <h3 className="text-xl font-bold">{project.name}</h3>
+                  <p className="line-clamp-3">{project.description}</p>
                   <div className="flex items-start justify-start gap-3">
-                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
-                      Show Deatils
-                      <ArrowUpRight className="w-4 h-4" />
-                    </Button>
-                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 font-medium">
-                      Live Site
-                    </Button>
-                    <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 font-medium gap-2">
-                      Github
-                      <Github className="w-4 h-4" />
-                    </Button>
+                    <Link href={`projects/${project._id}`}>
+                      <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
+                        Show Details
+                        <ArrowUpRight className="w-4 h-4" />
+                      </Button>
+                    </Link>
+                    <Link href={project.liveSite}>
+                      <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 font-medium">
+                        Live Site
+                      </Button>
+                    </Link>
+                    <Link href={project.github}>
+                      <Button className="gap-3 bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80">
+                        Github <Github className="w-4 h-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-[#18181B] text-[#E7E7E4] border-2 border-[#1b1b1c]">
-              <CardHeader>
-                <Image
-                  src={image}
-                  width="550"
-                  height="310"
-                  alt="Project 1"
-                  className="mx-auto aspect-video overflow-hidden rounded-t-xl object-cover object-center sm:w-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-start justify-start space-y-3">
-                  <h3 className="text-xl font-bold">Project 1</h3>
-                  <p>
-                    A web application that helps users manage their tasks and
-                    projects.
-                  </p>
-                  <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
-                    Show Deatils
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          <div className="grid gap-4">
-            <Card className="bg-[#18181B] text-[#E7E7E4] border-2 border-[#1b1b1c]">
-              <CardHeader>
-                <Image
-                  src={image}
-                  width="550"
-                  height="310"
-                  alt="Project 1"
-                  className="mx-auto aspect-video overflow-hidden rounded-t-xl object-cover object-center sm:w-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-start justify-start space-y-3">
-                  <h3 className="text-xl font-bold">Project 1</h3>
-                  <p>
-                    A web application that helps users manage their tasks and
-                    projects.
-                  </p>
-                  <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
-                    Show Deatils
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-[#18181B] text-[#E7E7E4] border-2 border-[#1b1b1c]">
-              <CardHeader>
-                <Image
-                  src={image}
-                  width="550"
-                  height="310"
-                  alt="Project 1"
-                  className="mx-auto aspect-video overflow-hidden rounded-t-xl object-cover object-center sm:w-full"
-                />
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-start justify-start space-y-3">
-                  <h3 className="text-xl font-bold">Project 1</h3>
-                  <p>
-                    A web application that helps users manage their tasks and
-                    projects.
-                  </p>
-                  <Button className="bg-zinc-300 text-black hover:bg-zinc-300 hover:opacity-80 gap-2">
-                    Show Deatils
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-center">
+          <Link href={"/projects"}>
+            <Button className="bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80 max-w-xs">
+              View All Projects
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

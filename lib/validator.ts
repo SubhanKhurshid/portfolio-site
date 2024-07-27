@@ -8,6 +8,7 @@ export const blogSchema = z.object({
     .string()
     .min(10, "Description should be at least 10 characters long")
     .max(1000, "Cannot be more than a 1000 words"),
+  featured: z.boolean().default(false)
 });
 
 export const projectSchema = z.object({
@@ -33,4 +34,5 @@ export const projectSchema = z.object({
     .string()
     .min(10, "Implementation details should be at least 10 characters long")
     .max(1000, "Implementation details cannot be more than 1000 characters"),
+  featured: z.boolean().default(false)
 });

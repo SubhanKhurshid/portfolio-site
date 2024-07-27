@@ -8,9 +8,12 @@ import Project from "../database/models/project.model";
 interface CreateBlogParams {
   title: string;
   description: string;
+  imageUrl: string;
+  featured: boolean;
 }
 
 interface CreateProjectParams {
+  
   name: string;
   description: string;
   techStack: string;
@@ -18,15 +21,76 @@ interface CreateProjectParams {
   github: string;
   achieved: string;
   implementation: string;
+  imageUrl: string;
+  featured: boolean;
 }
 
-export async function createBlog({ title, description }: CreateBlogParams) {
+
+export async function getProjects() {
+  try {
+    await connectToDatabase();
+    const data = await Project.find({ featured: true }).lean();
+    return {
+      success: true,
+      data: data, 
+    };
+  } catch (error) {
+    return { success: false, error: "something went wrong" };
+  }
+}
+
+export async function getProjectById(id:string) {
+  try {
+    await connectToDatabase();
+    const data = await Project.findById(id).lean();
+    return {
+      success: true,
+      data: data,
+    };
+  } catch (error) {
+    return { success: false, error: "Something went wrong" };
+  }
+}
+export async function getProjectsAll () {
+  try {
+    await connectToDatabase();
+    const data = await Project.find().lean();
+    return {
+      success: true,
+      data: data, 
+    };
+  } catch (error) {
+    return { success: false, error: "something went wrong" };
+  }
+}
+
+export async function getBlogs() {
+  try {
+    await connectToDatabase();
+    const data = await Blog.find({ featured: true }).lean();
+    return {
+      success: true,
+      data: data,
+    };
+  } catch (error) {
+    return { success: false, error: "something went wrong" };
+  }
+}
+
+export async function createBlog({
+  title,
+  description,
+  imageUrl,
+  featured,
+}: CreateBlogParams) {
   try {
     await connectToDatabase();
 
     const newBlog = await Blog.create({
       title,
       description,
+      imageUrl,
+      featured,
     });
 
     return {
@@ -34,7 +98,8 @@ export async function createBlog({ title, description }: CreateBlogParams) {
       data: { newBlog },
     };
   } catch (error) {
-    return { success: false, error: "something went wrong" };
+    console.error("Error creating blog:", error);
+    return { success: false, error: "Something went wrong" };
   }
 }
 
@@ -46,6 +111,8 @@ export async function createProject({
   github,
   achieved,
   implementation,
+  imageUrl,
+  featured,
 }: CreateProjectParams) {
   try {
     await connectToDatabase();
@@ -57,13 +124,15 @@ export async function createProject({
       github,
       achieved,
       implementation,
+      imageUrl,
+      featured,
     });
     return {
       success: true,
-      data: newProject, 
+      data: newProject,
     };
-  } catch (error:any) {
-    console.error('Error creating project:', error);
-    return { success: false, error: error.message || "Something went wrong" };
+  } catch (error) {
+    console.error("Error creating project:", error);
+    return { success: false, error: "Something went wrong" };
   }
 }
