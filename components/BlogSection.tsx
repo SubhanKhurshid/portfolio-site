@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import image from "@/public/pexels-danny-meneses-340146-943096.jpg";
 import { getBlogs } from "@/lib/actions/route";
+import { Button } from "./ui/button";
 
 const BlogSection = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -34,7 +34,7 @@ const BlogSection = () => {
             Explore some of my blogs
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {blogs.map((blog) => (
             <div
               key={blog.id}
@@ -51,15 +51,21 @@ const BlogSection = () => {
                 <h3 className="text-xl font-bold mb-2">{blog.title}</h3>
                 <p className="mb-4 line-clamp-3">{blog.description}</p>
                 <Link
-                  href={`/blogs/${blog.slug}`}
+                  href={`/blogs/${blog._id}`}
                   className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  prefetch={false}
                 >
                   Read More
                 </Link>
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center mt-5">
+          <Link href={"/blogs"}>
+            <Button className="bg-[#3D3D43] hover:bg-[#3D3D43] hover:opacity-80">
+              See All Blogs
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

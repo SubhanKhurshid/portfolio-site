@@ -1,7 +1,5 @@
 "use server";
 import Blog from "../database/models/blog.model";
-import * as z from "zod";
-import { blogSchema } from "../validator";
 import { connectToDatabase } from "../database";
 import Project from "../database/models/project.model";
 
@@ -13,7 +11,7 @@ interface CreateBlogParams {
 }
 
 interface CreateProjectParams {
-  
+
   name: string;
   description: string;
   techStack: string;
@@ -32,32 +30,59 @@ export async function getProjects() {
     const data = await Project.find({ featured: true }).lean();
     return {
       success: true,
-      data: data, 
+      data: JSON.parse(JSON.stringify(data)),
     };
   } catch (error) {
     return { success: false, error: "something went wrong" };
   }
 }
 
-export async function getProjectById(id:string) {
+export async function getProjectById(id: string) {
   try {
     await connectToDatabase();
     const data = await Project.findById(id).lean();
     return {
       success: true,
-      data: data,
+      data: JSON.parse(JSON.stringify(data)),
     };
   } catch (error) {
     return { success: false, error: "Something went wrong" };
   }
 }
-export async function getProjectsAll () {
+
+export async function getBlogById(id: string) {
+  try {
+    await connectToDatabase();
+    const data = await Blog.findById(id).lean();
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(data)),
+    };
+  } catch (error) {
+    return { success: false, error: "Something went wrong" };
+  }
+}
+
+export async function getProjectsAll() {
   try {
     await connectToDatabase();
     const data = await Project.find().lean();
     return {
       success: true,
-      data: data, 
+      data: JSON.parse(JSON.stringify(data)),
+    };
+  } catch (error) {
+    return { success: false, error: "something went wrong" };
+  }
+}
+
+export async function getBlogsAll() {
+  try {
+    await connectToDatabase();
+    const data = await Blog.find().lean();
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(data)),
     };
   } catch (error) {
     return { success: false, error: "something went wrong" };
@@ -70,7 +95,7 @@ export async function getBlogs() {
     const data = await Blog.find({ featured: true }).lean();
     return {
       success: true,
-      data: data,
+      data: JSON.parse(JSON.stringify(data)),
     };
   } catch (error) {
     return { success: false, error: "something went wrong" };
@@ -95,7 +120,7 @@ export async function createBlog({
 
     return {
       success: true,
-      data: { newBlog },
+      data:  JSON.parse(JSON.stringify(newBlog)) ,
     };
   } catch (error) {
     console.error("Error creating blog:", error);
@@ -129,7 +154,7 @@ export async function createProject({
     });
     return {
       success: true,
-      data: newProject,
+      data: JSON.parse(JSON.stringify(newProject)),
     };
   } catch (error) {
     console.error("Error creating project:", error);
