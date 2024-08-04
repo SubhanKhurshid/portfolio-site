@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import image from "@/public/1000086024.jpg";
 import { Button } from "./ui/button";
+import { Github } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -40,6 +41,12 @@ const Hero = () => {
             <Link href="#contact" prefetch={false}>
               <Button className="bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80">
                 Contact Me
+              </Button>
+            </Link>
+            <Link href="https://github.com/SubhanKhurshid">
+              <Button className=" gap-3 bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80">
+                Visit Github
+                <Github className="w-4 h-4" />
               </Button>
             </Link>
           </div>

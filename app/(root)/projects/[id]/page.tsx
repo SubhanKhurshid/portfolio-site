@@ -34,7 +34,7 @@ const page = () => {
       const result = await getProjectById(id);
 
       if (result.success && result.data) {
-        const data = result.data as Project | Project[]; 
+        const data = result.data as Project | Project[];
         const project = Array.isArray(data)
           ? data.length > 0
             ? data[0]
@@ -60,29 +60,31 @@ const page = () => {
           {project ? (
             <div className="grid gap-8 md:grid-cols-2 md:gap-12">
               <div className="flex flex-col justify-center space-y-4">
-                <h1 className="text-4xl font-medium tracking-tight lg:text-5xl text-[#E7E7E4] md:text-5xl">
+                <h1 className="text-4xl font-medium tracking-tighter lg:text-5xl text-[#E7E7E4] md:text-5xl">
                   {project.name}
                 </h1>
-                <p className="mt-4 md:text-xl">{project.description}</p>
+                <p className="mt-4 md:text-xl tracking-tighter">
+                  {project.description}
+                </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {techStack.map((tech, index) => (
                     <div
                       key={index}
                       className="inline-flex items-center rounded-md px-3 py-1 text-sm font-medium bg-[#3D3D43]"
                     >
-                      <CodeIcon className="mr-2 h-4 w-4" />
+                      <CodeIcon className="tracking-tighter mr-2 h-4 w-4" />
                       {tech}
                     </div>
                   ))}
                 </div>
                 <div className="flex items-start justify-start gap-3">
                   <Link href={project.liveSite}>
-                    <Button className="bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80">
+                    <Button className="bg-[#E7E7E4] tracking-tighter text-black hover:bg-[#E7E7E4] hover:opacity-80">
                       Live Site
                     </Button>
                   </Link>
                   <Link href={project.github}>
-                    <Button className="gap-3 bg-[#E7E7E4] text-black hover:bg-[#E7E7E4] hover:opacity-80">
+                    <Button className="gap-3 bg-[#E7E7E4] tracking-tighter text-black hover:bg-[#E7E7E4] hover:opacity-80">
                       Github <Github className="w-4 h-4" />
                     </Button>
                   </Link>
@@ -108,7 +110,7 @@ const page = () => {
               <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
                 What was Achieved?
               </h2>
-              <p className="mt-4 md:text-xl">
+              <p className="mt-4 md:text-xl tracking-tighter">
                 Here are the key features and functionalities that were
                 implemented in the project, highlighting the challenges overcome
                 and the impact it had.
@@ -116,7 +118,7 @@ const page = () => {
             </div>
             <div className="space-y-4">
               <div className="grid gap-1">
-                <p className="">{project?.achieved}</p>
+                <p className="tracking-tighter">{project?.achieved}</p>
               </div>
             </div>
           </div>
@@ -129,7 +131,7 @@ const page = () => {
               <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
                 Implementation Details
               </h2>
-              <p className="mt-4 md:text-xl">
+              <p className="mt-4 md:text-xl tracking-tighter">
                 A more in-depth information about the technical implementation
                 of the project, including any unique approaches or challenges
                 that were faced.
