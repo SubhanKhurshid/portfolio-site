@@ -44,7 +44,7 @@ const AllProjectCard = () => {
               <h3 className="text-xl font-bold group-hover:text-primary transition-colors capitalize">
                 {project.name}
               </h3>
-              <p className="text-sm mt-1">{project.description}</p>
+              <p className="text-sm mt-1 line-clamp-3">{project.description}</p>
             </div>
           </Link>
         </Card>

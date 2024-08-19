@@ -36,7 +36,7 @@ const BlogPage = () => {
         <div className="flex flex-col items-center justify-center min-h-dvh px-4 py-12 sm:px-6 lg:px-8">
           <article className="prose prose-gray max-w-3xl mx-auto dark:prose-invert">
             <div className="space-y-2 not-prose">
-              <h1 className="capitalize text-4xl font-medium tracking-tight lg:text-5xl text-[#E7E7E4]">
+              <h1 className="capitalize text-4xl font-medium lg:text-5xl text-[#E7E7E4]">
                 {blog?.title}
               </h1>
               <div className="flex items-center gap-2 text-sm text-[#E7E7E4]">

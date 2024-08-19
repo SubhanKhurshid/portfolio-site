@@ -27,7 +27,7 @@ const BlogSection = () => {
           <div className="inline-block rounded-lg px-3 py-1 text-sm bg-[#3D3D43]">
             Blogs
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
+          <h2 className="text-3xl font-bold md:text-4xl">
             Insights from My Digital Odyssey
           </h2>
           <p className="max-w-[600px] md:text-xl lg:text-base xl:text-xl">

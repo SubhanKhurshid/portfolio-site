@@ -15,7 +15,7 @@ const Education = () => {
             <div className="inline-block rounded-lg  px-3 py-1 text-sm bg-[#3D3D43]">
               Education
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+            <h2 className="text-3xl font-bold  md:text-4xl/tight">
               My Academic Background
             </h2>
             <p className="max-w-[600px]  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

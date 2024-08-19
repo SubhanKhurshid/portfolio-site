@@ -76,7 +76,7 @@ const AddProductPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center max-w-7xl mx-auto w-full px-10 p-5 mt-32 text-white gap-10">
-      <h1 className="text-[#E7E7E4] text-3xl md:text-6xl font-bold tracking-tighter text-center max-w-md">
+      <h1 className="text-[#E7E7E4] text-3xl md:text-6xl font-bold  text-center max-w-md">
         Add projects to brag about!
       </h1>
       <Form {...form}>

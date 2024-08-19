@@ -13,7 +13,7 @@ const ProjectHero = () => {
       <div className="container px-4 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           <div className="flex flex-col justify-center space-y-4">
-            <h1 className="text-4xl font-medium tracking-tight lg:text-5xl text-[#E7E7E4] md:text-5xl">
+            <h1 className="text-4xl font-medium  lg:text-5xl text-[#E7E7E4] md:text-5xl">
               Project Name
             </h1>
             <p className="mt-4 md:text-xl">

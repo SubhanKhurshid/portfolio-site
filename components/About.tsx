@@ -1,4 +1,4 @@
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, CodeIcon } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import image from "@/public/pexels-pixabay-247791.jpg";
@@ -15,7 +15,7 @@ const About = () => {
             <div className="inline-block rounded-lg px-3 py-1 text-sm bg-[#3D3D43]">
               About Me
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+            <h2 className="text-3xl font-bold  md:text-4xl/tight">
               My Skills and Experience
             </h2>
             <p className="max-w-[600px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -26,11 +26,36 @@ const About = () => {
               efficient solutions.
             </p>
           </div>
-          <ul className="grid gap-4">
-            <li className="flex items-center gap-2">
-              <CheckIcon className="w-5 h-5" />
-              <span>Proficient in React, Next.js, and TypeScript</span>
+          <ul className="grid  gap-4">
+            <li className="grid grid-cols-3 md:grid-cols-4 gap-3">
+              {[
+                "MERN",
+                "NEXT JS",
+                "NEST JS",
+                "SpringBoot",
+                "Java",
+                "Sckit-Learn",
+                "Tensorflow",
+                "Pytorch",
+                "Docker",
+                "MlOps",
+                "MlFlow",
+                "Pipelining",
+                "Flask",
+                "AWS",
+                "Azure",
+                "NEST JS",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="relative group inline-flex items-center rounded-md px-3 py-2 text-sm font-light cursor-pointer bg-[#3D3D43] text-white transition-transform duration-300 ease-in-out transform hover:scale-105"
+                >
+                  <CodeIcon className="mr-2 h-4 w-4" />
+                  {item}
+                </div>
+              ))}
             </li>
+
             <li className="flex items-center gap-2">
               <CheckIcon className="w-5 h-5" />
               <span>

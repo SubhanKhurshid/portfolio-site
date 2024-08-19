@@ -6,7 +6,7 @@ const ProjectImplement = () => {
       <div className="container px-4 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           <div>
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
+            <h2 className="text-2xl font-bold  sm:text-3xl">
               Implementation Details
             </h2>
             <p className="mt-4  md:text-xl">

@@ -111,7 +111,7 @@ const Navbar = () => {
                 />
               </SheetTrigger>
               <SheetContent className="flex flex-col gap-6 bg-white md:hidden">
-                <Link href={"/"} className="tracking-tight font-bold text-lg">
+                <Link href={"/"} className=" font-bold text-lg">
                   <CodeIcon className="h-6 w-6" />
                 </Link>
                 <Separator className="border border-gray-50" />
